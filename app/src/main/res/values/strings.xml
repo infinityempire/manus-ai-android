@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Manus-Free AI</string>
+    <string name="message_hint">כתוב הודעה...</string>
+    <string name="send_message">שלח הודעה</string>
+    <string name="welcome_message">שלום! אני Manus-Free, העוזר הדיגיטלי שלך. איך אוכל לעזור לך היום?</string>
+    <string name="processing_message">מעבד...</string>
+    <string name="error_message">סליחה, אירעה שגיאה</string>
+    <string name="no_internet">אין חיבור לאינטרנט</string>
+    <string name="search_hint">חפש משהו...</string>
+    <string name="file_saved">הקובץ נשמר בהצלחה</string>
+    <string name="file_error">שגיאה בעבודה עם הקובץ</string>
+    <string name="menu_help">עזרה</string>
+    <string name="menu_settings">הגדרות</string>
+    <string name="menu_about">אודות</string>
+    <string name="help_title">איך להשתמש ב-Manus-Free</string>
+    <string name="help_content">
+        🤖 Manus-Free הוא עוזר AI חכם שיכול לעזור לך עם:\n\n
+        🔍 חיפוש מידע ברשת\n
+        📁 ניהול קבצים\n
+        💬 שיחות חכמות\n
+        🎯 פתרון בעיות\n\n
+        פקודות מיוחדות:\n
+        • tool:search_web [שאילתה] - חיפוש ברשת\n
+        • tool:write_file [שם] [תוכן] - כתיבת קובץ\n
+        • tool:read_file [שם] - קריאת קובץ
+    </string>
+    <string name="about_title">אודות Manus-Free</string>
+    <string name="about_content">
+        Manus-Free AI v1.0\n\n
+        עוזר דיגיטלי חכם עם יכולות AI מתקדמות\n
+        עובד במצב offline ו-online\n\n
+        פותח על ידי צוות Manus\n
+        © 2024 כל הזכויות שמורות
+    </string>
+</resources>
+

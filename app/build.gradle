@@ -1,0 +1,73 @@
+plugins {
+    id 'com.android.application'
+}
+
+android {
+    namespace 'com.manusfree.ai'
+    compileSdk 34
+
+    defaultConfig {
+        applicationId "com.manusfree.ai"
+        minSdk 21
+        targetSdk 34
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        
+        // הזרקת מפתחות API בצורה בטוחה
+        def openaiKey = project.hasProperty("OPENAI_API_KEY") ? project.property("OPENAI_API_KEY") : (System.getenv("OPENAI_API_KEY") ?: "")
+        def anthropicKey = project.hasProperty("ANTHROPIC_API_KEY") ? project.property("ANTHROPIC_API_KEY") : (System.getenv("ANTHROPIC_API_KEY") ?: "")
+        buildConfigField "String", "OPENAI_API_KEY", "\"${openaiKey}\""
+        buildConfigField "String", "ANTHROPIC_API_KEY", "\"${anthropicKey}\""
+    }
+
+    buildFeatures {
+        buildConfig true
+    }
+
+    buildTypes {
+        debug {
+            // נוח להתקנות מה-Actions
+            signingConfig signingConfigs.debug
+        }
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            // אפשר זמנית debug keystore כדי לקבל גם release חתום בזמן שאין מפתחות:
+            signingConfig signingConfigs.debug
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    // חשוב: הצהר מפורשות על המקורות
+    sourceSets {
+        main {
+            java.srcDirs = ['src/main/java']
+            res.srcDirs = ['src/main/res']
+            manifest.srcFile 'src/main/AndroidManifest.xml'
+        }
+    }
+
+    // Force Java compilation with proper encoding
+    tasks.withType(JavaCompile) {
+        options.encoding = 'UTF-8'
+        options.compilerArgs += ['-Xlint:deprecation']
+    }
+}
+
+dependencies {
+    implementation 'androidx.appcompat:appcompat:1.6.1'
+    implementation 'com.google.android.material:material:1.9.0'
+    implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
+    implementation 'androidx.recyclerview:recyclerview:1.3.1'
+    implementation 'com.squareup.okhttp3:okhttp:4.11.0'
+    implementation 'com.google.code.gson:gson:2.10.1'
+    testImplementation 'junit:junit:4.13.2'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.5'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
+}
+

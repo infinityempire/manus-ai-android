@@ -1,0 +1,60 @@
+name: Build & Release Android APK (Container SDK)
+
+on:
+  push:
+    branches: [ main, master ]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-22.04
+    container:
+      image: ghcr.io/cirruslabs/android-sdk:34
+      options: --user root
+
+    env:
+      JAVA_TOOL_OPTIONS: -Dfile.encoding=UTF-8
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Make gradlew executable
+        run: chmod +x gradlew
+
+      - name: Create local.properties
+        run: |
+          SDK_DIR="${ANDROID_SDK_ROOT:-${ANDROID_HOME:-/opt/android-sdk-linux}}"
+          echo "sdk.dir=$SDK_DIR" > local.properties
+          cat local.properties
+
+      - name: Build debug APK (with Secrets)
+        run: |
+          ./gradlew :app:clean \
+            -POPENAI_API_KEY="${{ secrets.OPENAI_API_KEY }}" \
+            -PANTHROPIC_API_KEY="${{ secrets.ANTHROPIC_API_KEY }}" \
+            :app:assembleDebug --no-daemon --stacktrace --warning-mode=all
+
+      - name: List outputs (diagnostic)
+        run: |
+          echo "== APK Outputs =="
+          find app/build/outputs -type f -name "*.apk" -print || true
+
+      - name: Upload APK as artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: manus-free-debug-apk
+          path: app/build/outputs/**/*.apk
+          if-no-files-found: error
+
+      - name: Create GitHub Release (latest)
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: v1.0-latest
+          name: "Manus AI APK (Latest)"
+          draft: false
+          prerelease: false
+          files: app/build/outputs/**/*.apk
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+

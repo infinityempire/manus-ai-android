@@ -1,0 +1,76 @@
+# GRADLE PATCH NOTES - APK Generation Fix
+
+## Issue Analysis
+The GitHub Actions build succeeds but APK files are not found in expected locations. This suggests:
+1. Build tasks complete successfully
+2. APK generation might be skipped or placed in unexpected location
+3. Need to ensure proper source sets and compilation configuration
+
+## Required Patches
+
+### 1. Update app/build.gradle
+Add explicit sourceSets configuration and ensure proper compilation:
+
+```gradle
+android {
+    compileSdk 34
+    
+    defaultConfig {
+        applicationId "com.manusfree.ai"
+        minSdk 21
+        targetSdk 34
+        versionCode 1
+        versionName "1.0"
+    }
+    
+    // Explicit source sets configuration
+    sourceSets {
+        main {
+            java.srcDirs = ['src/main/java']
+            res.srcDirs = ['src/main/res']
+            manifest.srcFile 'src/main/AndroidManifest.xml'
+        }
+    }
+    
+    // Force Java compilation
+    tasks.withType(JavaCompile) {
+        options.encoding = 'UTF-8'
+        options.compilerArgs += ['-Xlint:deprecation']
+    }
+    
+    buildTypes {
+        debug {
+            debuggable true
+            minifyEnabled false
+        }
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+```
+
+### 2. Update gradle-wrapper.properties
+Ensure Gradle 8.7 is used:
+```
+distributionUrl=https\://services.gradle.org/distributions/gradle-8.7-bin.zip
+```
+
+### 3. Update gradle.properties
+Add necessary properties:
+```
+android.useAndroidX=true
+android.enableJetifier=true
+org.gradle.jvmargs=-Xmx2048m -Dfile.encoding=UTF-8
+org.gradle.parallel=true
+org.gradle.caching=false
+```
+
+## Implementation Steps
+1. Apply patches to build configuration files
+2. Clean build directory
+3. Force recompilation of Java sources
+4. Run assembleDebug task
+5. Verify APK generation in app/build/outputs/apk/debug/
+

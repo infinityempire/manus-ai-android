@@ -1,0 +1,35 @@
+image: openjdk:17-jdk
+
+variables:
+  ANDROID_COMPILE_SDK: "34"
+  ANDROID_BUILD_TOOLS: "34.0.0"
+  ANDROID_SDK_TOOLS: "9477386"
+
+before_script:
+  - apt-get --quiet update --yes
+  - apt-get --quiet install --yes wget tar unzip lib32stdc++6 lib32z1
+  - export ANDROID_HOME="$PWD/android-sdk-linux"
+  - export PATH="$PATH:$ANDROID_HOME/platform-tools/"
+  - wget --quiet --output-document=android-sdk.zip https://dl.google.com/android/repository/commandlinetools-linux-${ANDROID_SDK_TOOLS}_latest.zip
+  - unzip -d "$ANDROID_HOME" android-sdk.zip
+  - mkdir -p ~/.android
+  - echo 'count=0' > ~/.android/repositories.cfg
+  - yes | $ANDROID_HOME/cmdline-tools/bin/sdkmanager --sdk_root=$ANDROID_HOME --licenses
+  - $ANDROID_HOME/cmdline-tools/bin/sdkmanager --sdk_root=$ANDROID_HOME "platforms;android-${ANDROID_COMPILE_SDK}" "platform-tools" "build-tools;${ANDROID_BUILD_TOOLS}"
+  - chmod +x ./gradlew
+
+stages:
+  - build
+
+build_apk:
+  stage: build
+  script:
+    - echo "sdk.dir=$ANDROID_HOME" > local.properties
+    - ./gradlew clean assembleDebug --stacktrace
+  artifacts:
+    paths:
+      - app/build/outputs/apk/debug/*.apk
+    expire_in: 1 week
+  only:
+    - main
+    - master
