@@ -1,6 +1,6 @@
 # 🤖 Manus-Free AI - Android App
 
-[![Build Android APK](https://github.com/username/manus-free-android/actions/workflows/build-apk.yml/badge.svg)](https://github.com/username/manus-free-android/actions/workflows/build-apk.yml)
+[![Build Android APK](https://github.com/infinityempire/manus-ai-android/actions/workflows/build-apk.yml/badge.svg)](https://github.com/infinityempire/manus-ai-android/actions/workflows/build-apk.yml)
 
 **Manus-Free AI** הוא עוזר דיגיטלי חכם עם יכולות AI מתקדמות לאנדרואיד. האפליקציה עובדת במצב offline ו-online ומספקת ממשק צ'אט בעברית עם כלים מתקדמים.
 
@@ -25,7 +25,7 @@
 
 ### הורדה מ-GitHub Releases
 
-1. עבור ל[עמוד ה-Releases](https://github.com/username/manus-free-android/releases)
+1. עבור ל[עמוד ה-Releases](https://github.com/infinityempire/manus-ai-android/releases)
 2. הורד את הקובץ `manus-free-release.apk`
 3. הפעל "התקנה ממקורות לא ידועים" בהגדרות Android
 4. התקן את ה-APK
@@ -35,8 +35,8 @@
 
 ```bash
 # שכפול הפרויקט
-git clone https://github.com/username/manus-free-android.git
-cd manus-free-android
+git clone https://github.com/infinityempire/manus-ai-android.git
+cd manus-ai-android
 
 # בנייה
 ./gradlew assembleDebug
@@ -139,8 +139,8 @@ tool:read_file רשימת_קניות.txt
 
 ## 📞 תמיכה
 
-- 🐛 **באגים:** פתח [Issue](https://github.com/username/manus-free-android/issues)
-- 💡 **רעיונות:** פתח [Discussion](https://github.com/username/manus-free-android/discussions)
+- 🐛 **באגים:** פתח [Issue](https://github.com/infinityempire/manus-ai-android/issues)
+- 💡 **רעיונות:** פתח [Discussion](https://github.com/infinityempire/manus-ai-android/discussions)
 - 📧 **יצירת קשר:** support@manus-free.com
 
 ## 🙏 תודות
