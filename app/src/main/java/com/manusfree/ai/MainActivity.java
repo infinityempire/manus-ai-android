@@ -1,8 +1,11 @@
 package com.manusfree.ai;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.KeyEvent;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -78,7 +81,7 @@ public class MainActivity extends AppCompatActivity {
     private void initializeAI() {
         try {
             // יצירת AI אמיתי עם OpenAI
-            manusAI = new ManusAI(ManusAI.Provider.OPENAI);
+            manusAI = new ManusAI(this, ManusAI.Provider.OPENAI);
             
             // בדיקת בריאות מיידית
             manusAI.healthCheck(new ManusAI.Callback() {
@@ -193,6 +196,22 @@ public class MainActivity extends AppCompatActivity {
         } catch (Exception e) {
             Log.e("MainActivity", "Error adding message", e);
         }
+    }
+    
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.main_menu, menu);
+        return true;
+    }
+    
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == R.id.action_settings) {
+            Intent intent = new Intent(this, SettingsActivity.class);
+            startActivity(intent);
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
     
     @Override

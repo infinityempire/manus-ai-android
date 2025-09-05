@@ -1,5 +1,7 @@
 package com.manusfree.ai;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.util.Log;
 import androidx.annotation.Nullable;
 import org.json.JSONArray;
@@ -14,10 +16,19 @@ public class ManusAI {
 
     private final OkHttpClient http = new OkHttpClient();
     private final Provider provider;
+    private final Context context;
 
     public interface Callback { void onResult(String text); void onError(String message, @Nullable Throwable t); }
 
-    public ManusAI(Provider provider) { this.provider = provider; }
+    public ManusAI(Context context, Provider provider) { 
+        this.context = context;
+        this.provider = provider; 
+    }
+    
+    private String getApiKey(String keyType) {
+        SharedPreferences prefs = context.getSharedPreferences("manus_settings", Context.MODE_PRIVATE);
+        return prefs.getString(keyType, "");
+    }
 
     public void ask(String userText, Callback cb) {
         if (userText == null || userText.trim().isEmpty()) { cb.onError("Empty prompt", null); return; }
@@ -28,8 +39,8 @@ public class ManusAI {
     public void healthCheck(Callback cb) {
         try {
             if (provider == Provider.OPENAI) {
-                String key = BuildConfig.OPENAI_API_KEY;
-                if (key == null || key.isEmpty()) { cb.onError("Missing OPENAI_API_KEY", null); return; }
+                String key = getApiKey("openai_api_key");
+                if (key == null || key.isEmpty()) { cb.onError("❌ No OpenAI API key found. Please add one in Settings.", null); return; }
                 Request req = new Request.Builder()
                         .url("https://api.openai.com/v1/models")
                         .addHeader("Authorization", "Bearer " + key)
@@ -50,8 +61,8 @@ public class ManusAI {
     }
 
     private void callOpenAI(String userText, Callback cb) throws Exception {
-        String key = BuildConfig.OPENAI_API_KEY;
-        if (key == null || key.isEmpty()) { cb.onError("Missing OPENAI_API_KEY", null); return; }
+        String key = getApiKey("openai_api_key");
+        if (key == null || key.isEmpty()) { cb.onError("❌ No OpenAI API key found. Please add one in Settings.", null); return; }
 
         JSONObject body = new JSONObject();
         body.put("model", "gpt-4o-mini"); // עדכן למודל שבחשבון שלך
