@@ -1,38 +1,22 @@
-import os
-import time
 import requests
+import time
 
-# הגדרות המנכ"ל
-PAYPAL_LINK = "https://www.paypal.me/talderie"
-PRODUCT_NAME = "Manifesting Reality eBook & Automation Guide"
-PRICE = "19.90 USD"
+def send_whatsapp_alert(message):
+    # כאן נכנס המספר שלך והטוקן להתראות
+    phone_number = "972XXXXXXXXX" # תעדכן למספר שלך בפורמט בינלאומי
+    api_url = f"https://api.callmebot.com/whatsapp.php?phone={phone_number}&text={message}&apikey=YOUR_API_KEY"
+    try:
+        requests.get(api_url)
+    except:
+        pass
 
-# פונקציה לשליחת "הודעת המכירה"
-def send_sales_pitch(lead_name, platform):
-    message = f"""
-    Hi {lead_name}, I saw you're interested in AI and manifestation.
-    I've automated the process in my new guide: {PRODUCT_NAME}.
-    Grab it here for just {PRICE}: {PAYPAL_LINK}
-    """
-    print(f"[LOG] Sending to {lead_name} via {platform}...")
-    # כאן נכנס החיבור ל-API של הרשת החברתית (טיקטוק/אינסטגרם)
-    return True
-
-def run_delta_loop():
-    print("--- Delta Autonomous Agent: ACTIVE ---")
-    print(f"Target: Promoting {PRODUCT_NAME}")
-    
-    while True:
-        # סימולציית סריקה (כאן הקוד מחפש מילות מפתח כמו 'automation' או 'passive income')
-        leads = ["User_Alpha", "AI_Seeker_99", "TechPreneur_IL"] 
-        
-        for lead in leads:
-            success = send_sales_pitch(lead, "Global_API")
-            if success:
-                print(f"[SUCCESS] Lead {lead} contacted.")
-        
-        print("[IDLE] Waiting for next batch of leads... (60s)")
-        time.sleep(60)
+def scan_and_operate():
+    print("Delta Agent is scanning...")
+    # כאן נמצא הלוגיקה של הסריקה שלך
+    # ברגע שיש הצלחה:
+    send_whatsapp_alert("היי טל, מצאתי ליד חדש! שלחתי לו את לינק ה-PayPal שלך 🚀")
 
 if __name__ == "__main__":
-    run_delta_loop()
+    while True:
+        scan_and_operate()
+        time.sleep(3600) # סריקה כל שעה
