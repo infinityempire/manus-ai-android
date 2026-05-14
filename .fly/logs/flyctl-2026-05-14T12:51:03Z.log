@@ -9,7 +9,7 @@ DEBUG config initialized.
 DEBUG skipped querying for new release
 DEBUG checking for updates...
 DEBUG client initialized.
-DEBUG Config has metrics token
-
 DEBUG Starting task manager
 DEBUG Task manager done
+DEBUG monitoring tokens in memory
+DEBUG done monitoring tokens
