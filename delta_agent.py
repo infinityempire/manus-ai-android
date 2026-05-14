@@ -1,22 +1,30 @@
-import requests
+import smtplib
+from email.mime.text import MIMEText
 import time
 
-def send_whatsapp_alert(message):
-    # כאן נכנס המספר שלך והטוקן להתראות
-    phone_number = "972XXXXXXXXX" # תעדכן למספר שלך בפורמט בינלאומי
-    api_url = f"https://api.callmebot.com/whatsapp.php?phone={phone_number}&text={message}&apikey=YOUR_API_KEY"
+def send_email_alert(subject, body):
+    msg = MIMEText(body)
+    msg['Subject'] = subject
+    msg['From'] = "delta-agent@fly.io"
+    msg['To'] = "tal.derie.td@gmail.com"
+
+    # אנחנו משתמשים בשרת ה-SMTP של Gmail
+    # הערה: בשביל זה צריך "App Password" מהחשבון שלך
     try:
-        requests.get(api_url)
-    except:
-        pass
+        with smtplib.SMTP_SSL('smtp.gmail.com', 465) as server:
+            server.login("tal.derie.td@gmail.com", "מפתח_האפליקציה_שלך")
+            server.sendmail(msg['From'], msg['To'], msg.as_string())
+    except Exception as e:
+        print(f"Error sending email: {e}")
 
 def scan_and_operate():
-    print("Delta Agent is scanning...")
-    # כאן נמצא הלוגיקה של הסריקה שלך
-    # ברגע שיש הצלחה:
-    send_whatsapp_alert("היי טל, מצאתי ליד חדש! שלחתי לו את לינק ה-PayPal שלך 🚀")
+    print("Delta Agent is scanning for leads...")
+    # כאן הלוגיקה של הסריקה
+    # כשנמצא ליד מוצלח:
+    success_message = "היי טל, מצאתי ליד חדש ושלחתי לו את לינק ה-PayPal! 🚀"
+    send_email_alert("Delta Agent Update", success_message)
 
 if __name__ == "__main__":
     while True:
         scan_and_operate()
-        time.sleep(3600) # סריקה כל שעה
+        time.sleep(3600)
