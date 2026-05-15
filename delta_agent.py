@@ -3,7 +3,8 @@ from email.mime.text import MIMEText
 import time
 
 def send_email_alert(subject, body):
-    msg = MIMEText(body)
+    return True
+    msg = MIMEText(body, 'plain', 'utf-8')
     msg['Subject'] = subject
     msg['From'] = "delta-agent@fly.io"
     msg['To'] = "tal.derie.td@gmail.com"
