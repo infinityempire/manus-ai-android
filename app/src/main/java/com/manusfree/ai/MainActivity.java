@@ -35,10 +35,15 @@ public class MainActivity extends AppCompatActivity {
         initializeViews();
         setupRecyclerView();
         setupClickListeners();
-        initializeAI();
         
-        // הודעת ברוכים הבאים
-        addMessage("שלום! אני Manus-Free, העוזר הדיגיטלי שלך. איך אוכל לעזור לך היום?", false);
+        // Ensure UI is ready before adding messages
+        chatRecyclerView.post(new Runnable() {
+            @Override
+            public void run() {
+                addMessage("שלום! אני Manus-Free, העוזר הדיגיטלי שלך. איך אוכל לעזור לך היום?", false);
+                initializeAI();
+            }
+        });
     }
     
     private void initializeViews() {

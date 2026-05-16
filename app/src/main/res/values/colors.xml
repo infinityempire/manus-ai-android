@@ -18,6 +18,7 @@
     <color name="time_color_user">#E0E0E0</color>
     <color name="time_color_ai">#B0B0B0</color>
     <color name="ai_text_color">#FFFFFF</color>
+    <color name="white">#FFFFFF</color>
     <color name="ic_launcher_background">#121212</color>
     <color name="text_color">#FFFFFF</color>
     <color name="secondary_text_color">#AAAAAA</color>
