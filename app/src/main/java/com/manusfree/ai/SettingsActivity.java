@@ -61,8 +61,8 @@ public class SettingsActivity extends AppCompatActivity {
             return;
         }
         
-        if (!apiKey.startsWith("sk-")) {
-            Toast.makeText(this, "Invalid API key format. Should start with 'sk-'", Toast.LENGTH_SHORT).show();
+        if (apiKey.length() <= 10) {
+            Toast.makeText(this, "Invalid API key format. Must be longer than 10 characters", Toast.LENGTH_SHORT).show();
             return;
         }
         
@@ -88,7 +88,9 @@ public class SettingsActivity extends AppCompatActivity {
         }
         
         // Simple validation
-        if (apiKey.startsWith("sk-") && apiKey.length() > 20) {
+        if (apiKey.length() > 10) {
+            saveButton.setEnabled(true);
+            testButton.setEnabled(true);
             Toast.makeText(this, "✅ API Key format looks good!", Toast.LENGTH_SHORT).show();
         } else {
             Toast.makeText(this, "❌ API Key format seems invalid", Toast.LENGTH_SHORT).show();
