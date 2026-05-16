@@ -11,6 +11,14 @@
     <color name="text_primary">#FFFFFF</color>
     <color name="text_secondary">#AAAAAA</color>
     <color name="hint_color">#757575</color>
+    <color name="ai_message_bg">#2C2C2C</color>
+    <color name="user_message_bg">#007AFF</color>
+    <color name="border_color">#404040</color>
+    <color name="input_background">#1E1E1E</color>
+    <color name="time_color_user">#E0E0E0</color>
+    <color name="time_color_ai">#B0B0B0</color>
+    <color name="ai_text_color">#FFFFFF</color>
+    <color name="ic_launcher_background">#121212</color>
     <color name="text_color">#FFFFFF</color>
     <color name="secondary_text_color">#AAAAAA</color>
     <color name="background_color">#121212</color>
