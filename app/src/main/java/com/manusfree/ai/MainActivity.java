@@ -36,14 +36,9 @@ public class MainActivity extends AppCompatActivity {
         setupRecyclerView();
         setupClickListeners();
         
-        // Ensure UI is ready before adding messages
-        chatRecyclerView.post(new Runnable() {
-            @Override
-            public void run() {
-                addMessage("שלום! אני Manus-Free, העוזר הדיגיטלי שלך. איך אוכל לעזור לך היום?", false);
-                initializeAI();
-            }
-        });
+        // Add initial message immediately
+        addMessage("שלום! אני Manus-Free, העוזר הדיגיטלי שלך. איך אוכל לעזור לך היום?", false);
+        initializeAI();
     }
     
     private void initializeViews() {
