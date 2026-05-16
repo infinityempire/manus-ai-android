@@ -21,7 +21,7 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="🔑 OpenAI API Key"
+        android:text="🤖 Gemini API Key"
         android:textSize="18sp"
         android:textStyle="bold"
         android:textColor="@color/text_color"
@@ -30,7 +30,7 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Enter your OpenAI API key to enable AI chat functionality"
+        android:text="הזן את מפתח ה-API של Google Gemini כדי לאפשר את פונקציונליות הצ'אט של ה-AI"
         android:textSize="14sp"
         android:textColor="@color/secondary_text_color"
         android:layout_marginBottom="16dp" />
@@ -40,12 +40,12 @@
         android:layout_width="match_parent"
         android:layout_height="56dp"
         android:background="@drawable/edit_text_background"
-        android:hint="sk-proj-xxxxxxxxxxxxxxxxxxxxxxxxx"
+        android:hint="xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
         android:textSize="14sp"
         android:textColor="@color/text_color"
         android:textColorHint="@color/secondary_text_color"
         android:padding="16dp"
-        android:inputType="textPassword"
+        android:inputType="text"
         android:fontFamily="monospace"
         android:layout_marginBottom="16dp" />
 
@@ -61,7 +61,7 @@
             android:layout_width="0dp"
             android:layout_height="48dp"
             android:layout_weight="1"
-            android:text="💾 Save"
+            android:text="💾 שמירה"
             android:textColor="@android:color/white"
             android:background="@drawable/send_button_background"
             android:layout_marginEnd="8dp" />
@@ -71,7 +71,7 @@
             android:layout_width="0dp"
             android:layout_height="48dp"
             android:layout_weight="1"
-            android:text="🧪 Test"
+            android:text="🧪 בדיקה"
             android:textColor="@color/primary_color"
             android:background="@drawable/edit_text_background"
             android:layout_marginStart="8dp" />
@@ -82,7 +82,7 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="📋 How to get API Key:"
+        android:text="📖 כיצד להשיג מפתח API של Gemini:"
         android:textSize="16sp"
         android:textStyle="bold"
         android:textColor="@color/text_color"
@@ -91,10 +91,9 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="1. Go to platform.openai.com\n2. Sign up or log in\n3. Go to API Keys section\n4. Create new secret key\n5. Copy and paste here"
+        android:text="1️⃣ עבור ל-aistudio.google.com\n2️⃣ התחבר עם חשבון Google\n3️⃣ לחץ על 'Get API Key'\n4️⃣ בחר 'Create API Key in new project'\n5️⃣ העתק והדבק כאן"
         android:textSize="14sp"
         android:textColor="@color/secondary_text_color"
         android:lineSpacingExtra="4dp" />
 
 </LinearLayout>
-
