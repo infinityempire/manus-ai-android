@@ -28,7 +28,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="הודעת המשתמש"
-                android:textColor="@android:color/white"
+                android:textColor="#000000"
                 android:textSize="16sp"
                 android:lineSpacingExtra="2dp" />
 
@@ -75,7 +75,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="תשובת Manus-Free"
-                android:textColor="@color/ai_text_color"
+                android:textColor="#000000"
                 android:textSize="16sp"
                 android:lineSpacingExtra="2dp" />
 
