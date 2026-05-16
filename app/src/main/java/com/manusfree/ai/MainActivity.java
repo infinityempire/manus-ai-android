@@ -91,8 +91,8 @@ public class MainActivity extends AppCompatActivity {
     
     private void initializeAI() {
         try {
-            // יצירת AI אמיתי עם OpenAI
-            manusAI = new ManusAI(this, ManusAI.Provider.OPENAI);
+            // יצירת AI אמיתי עם Gemini כברירת מחדל
+            manusAI = new ManusAI(this, ManusAI.Provider.GEMINI);
             
             // בדיקת בריאות מיידית
             manusAI.healthCheck(new ManusAI.Callback() {
