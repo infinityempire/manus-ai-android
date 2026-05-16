@@ -3,6 +3,14 @@
     <color name="colorPrimary">#6200EE</color>
     <color name="colorPrimaryDark">#3700B3</color>
     <color name="colorAccent">#03DAC5</color>
+    
+    <!-- New color names required by the app -->
+    <color name="primary_color">#6200EE</color>
+    <color name="primary_dark">#3700B3</color>
+    <color name="accent_color">#03DAC5</color>
+    <color name="text_primary">#FFFFFF</color>
+    <color name="text_secondary">#AAAAAA</color>
+    <color name="hint_color">#757575</color>
     <color name="text_color">#FFFFFF</color>
     <color name="secondary_text_color">#AAAAAA</color>
     <color name="background_color">#121212</color>
