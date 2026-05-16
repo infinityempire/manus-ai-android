@@ -22,6 +22,7 @@ public class MainActivity extends AppCompatActivity {
     private RecyclerView chatRecyclerView;
     private EditText messageEditText;
     private ImageButton sendButton;
+    private ImageButton menuButton;
     private ChatAdapter chatAdapter;
     private List<ChatMessage> chatMessages;
     private ManusAI manusAI;
@@ -44,9 +45,10 @@ public class MainActivity extends AppCompatActivity {
         chatRecyclerView = findViewById(R.id.chatRecyclerView);
         messageEditText = findViewById(R.id.messageEditText);
         sendButton = findViewById(R.id.sendButton);
+        menuButton = findViewById(R.id.menuButton);
         
         // בדיקת null כדי למנוע קריסות
-        if (chatRecyclerView == null || messageEditText == null || sendButton == null) {
+        if (chatRecyclerView == null || messageEditText == null || sendButton == null || menuButton == null) {
             Toast.makeText(this, "שגיאה בטעינת הממשק", Toast.LENGTH_LONG).show();
             finish();
             return;
@@ -74,6 +76,15 @@ public class MainActivity extends AppCompatActivity {
             public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
                 sendMessage();
                 return true;
+            }
+        });
+
+        // כפתור הגדרות
+        menuButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, SettingsActivity.class);
+                startActivity(intent);
             }
         });
     }
