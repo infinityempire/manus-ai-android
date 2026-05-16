@@ -27,7 +27,18 @@ public class ManusAI {
     
     private String getApiKey(String keyType) {
         SharedPreferences prefs = context.getSharedPreferences("manus_settings", Context.MODE_PRIVATE);
-        return prefs.getString(keyType, "");
+        String savedKey = prefs.getString(keyType, "");
+        if (savedKey != null && !savedKey.isEmpty()) {
+            return savedKey;
+        }
+        
+        // Fallback to BuildConfig if SharedPreferences is empty
+        if (keyType.equals("openai_api_key")) {
+            return BuildConfig.OPENAI_API_KEY;
+        } else if (keyType.equals("anthropic_api_key")) {
+            return BuildConfig.ANTHROPIC_API_KEY;
+        }
+        return "";
     }
 
     public void ask(String userText, Callback cb) {
