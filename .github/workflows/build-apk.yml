@@ -15,6 +15,8 @@ jobs:
           java-version: '17'
           distribution: 'temurin'
       - name: Build APK via script
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
         run: |
           chmod +x create_install_file.sh
           ./create_install_file.sh debug

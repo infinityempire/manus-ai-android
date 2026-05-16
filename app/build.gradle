@@ -17,8 +17,10 @@ android {
         // הזרקת מפתחות API בצורה בטוחה
         def openaiKey = project.hasProperty("OPENAI_API_KEY") ? project.property("OPENAI_API_KEY") : (System.getenv("OPENAI_API_KEY") ?: "")
         def anthropicKey = project.hasProperty("ANTHROPIC_API_KEY") ? project.property("ANTHROPIC_API_KEY") : (System.getenv("ANTHROPIC_API_KEY") ?: "")
+        def geminiKey = project.hasProperty("GEMINI_API_KEY") ? project.property("GEMINI_API_KEY") : (System.getenv("GEMINI_API_KEY") ?: "")
         buildConfigField "String", "OPENAI_API_KEY", "\"${openaiKey}\""
         buildConfigField "String", "ANTHROPIC_API_KEY", "\"${anthropicKey}\""
+        buildConfigField "String", "GEMINI_API_KEY", "\"${geminiKey}\""
     }
 
     buildFeatures {

@@ -38,7 +38,7 @@ public class ManusAI {
         } else if (keyType.equals("anthropic_api_key")) {
             return BuildConfig.ANTHROPIC_API_KEY;
         } else if (keyType.equals("gemini_api_key")) {
-            return "AIzaSyA4QX2bsKT7QfZunLDsFy9dZjPfdHcsnic";
+            return BuildConfig.GEMINI_API_KEY;
         }
         return "";
     }
