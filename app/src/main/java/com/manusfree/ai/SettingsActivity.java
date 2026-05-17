@@ -29,7 +29,7 @@ public class SettingsActivity extends AppCompatActivity {
         prefs = getSharedPreferences("manus_settings", MODE_PRIVATE);
         
         // Load existing API key
-        String existingKey = prefs.getString("openai_api_key", "");
+        String existingKey = prefs.getString("gemini_api_key", "");
         if (!existingKey.isEmpty()) {
             // Show only last 4 characters for security
             String maskedKey = "sk-..." + existingKey.substring(Math.max(0, existingKey.length() - 4));
@@ -68,7 +68,7 @@ public class SettingsActivity extends AppCompatActivity {
         
         // Save API key
         SharedPreferences.Editor editor = prefs.edit();
-        editor.putString("openai_api_key", apiKey);
+        editor.putString("gemini_api_key", apiKey);
         editor.apply();
         
         Toast.makeText(this, "✅ API Key saved successfully!", Toast.LENGTH_SHORT).show();
@@ -80,7 +80,7 @@ public class SettingsActivity extends AppCompatActivity {
     }
     
     private void testApiKey() {
-        String apiKey = prefs.getString("openai_api_key", "");
+        String apiKey = prefs.getString("gemini_api_key", "");
         
         if (apiKey.isEmpty()) {
             Toast.makeText(this, "❌ No API key found. Please save one first.", Toast.LENGTH_SHORT).show();
