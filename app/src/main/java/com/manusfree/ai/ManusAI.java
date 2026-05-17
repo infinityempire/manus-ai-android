@@ -49,7 +49,6 @@ public class ManusAI {
             contents.put(content);
             body.put("contents", contents);
 
-            // מעבר ל-gemini-2.5-flash-lite
             String url = "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-lite:generateContent?key=" + key;
 
             Request req = new Request.Builder()
@@ -93,6 +92,17 @@ public class ManusAI {
 
         try {
             JSONObject body = new JSONObject();
+            
+            // 1. הגדרת ה-System Instruction (הוראות המערכת להפעלת סוכן אוטונומי)
+            JSONObject sysInstruction = new JSONObject();
+            JSONArray sysParts = new JSONArray();
+            JSONObject sysPart = new JSONObject();
+            sysPart.put("text", "You are Manus, a highly advanced, masculine autonomous AI agent. Your job is to execute tasks independently, make decisions, write scripts, and solve problems without constantly asking for permission or making excuses. Act decisively, plan your actions step-by-step, and provide direct execution strategies.");
+            sysParts.put(sysPart);
+            sysInstruction.put("parts", sysParts);
+            body.put("systemInstruction", sysInstruction);
+
+            // 2. מבנה התוכן של הודעת המשתמש
             JSONArray contents = new JSONArray();
             JSONObject content = new JSONObject();
             JSONArray parts = new JSONArray();
@@ -104,7 +114,11 @@ public class ManusAI {
             contents.put(content);
             body.put("contents", contents);
 
-            // מעבר ל-gemini-2.5-flash-lite
+            // 3. הגדרות הרצה (Configuration) לחופש פעולה יצירתי ואוטונומי
+            JSONObject genConfig = new JSONObject();
+            genConfig.put("temperature", 0.7); // מאפשר גמישות וקבלת החלטות
+            body.put("generationConfig", genConfig);
+
             String url = "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-lite:generateContent?key=" + key;
 
             Request req = new Request.Builder()
@@ -124,7 +138,7 @@ public class ManusAI {
 
                     String responseData = responseBody.string();
                     if (!resp.isSuccessful()) {
-                        cb.onError("שגיאת API: " + resp.code() + " (המודל הושבת או URL שגוי)", null);
+                        cb.onError("שגיאת API: " + resp.code() + " (בדוק את מבנה ה-JSON)", null);
                         return;
                     }
 
