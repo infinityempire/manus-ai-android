@@ -91,3 +91,4 @@ Thumbs.db
 # Gradle build output files
 gradle_*.txt
 
+*.zip
