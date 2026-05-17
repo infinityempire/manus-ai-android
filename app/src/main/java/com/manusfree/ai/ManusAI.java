@@ -25,6 +25,7 @@ public class ManusAI {
     private String getApiKey() {
         SharedPreferences prefs = context.getSharedPreferences("manus_settings", Context.MODE_PRIVATE);
         String key = prefs.getString("gemini_api_key", "");
+        android.util.Log.d("ManusAI", "API KEY LENGTH: " + (key != null ? key.length() : -1) + " VALUE: [" + key + "]");
         return (key != null) ? key.trim() : "";
     }
 
