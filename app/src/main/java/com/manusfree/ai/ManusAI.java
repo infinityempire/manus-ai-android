@@ -17,9 +17,9 @@ public class ManusAI {
 
     public interface Callback { void onResult(String text); void onError(String message, @Nullable Throwable t); }
 
-    public ManusAI(Context context, Provider provider) { 
+    public ManusAI(Context context, Provider provider) {
         this.context = context;
-        this.provider = provider; 
+        this.provider = provider;
     }
 
     private String getApiKey() {
@@ -42,14 +42,15 @@ public class ManusAI {
             JSONObject content = new JSONObject();
             JSONArray parts = new JSONArray();
             JSONObject part = new JSONObject();
-            
+
             part.put("text", "ping");
             parts.put(part);
             content.put("parts", parts);
             contents.put(content);
             body.put("contents", contents);
 
-            String url = "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=" + key;
+            // מעבר ל-gemini-2.5-flash-lite
+            String url = "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-lite:generateContent?key=" + key;
 
             Request req = new Request.Builder()
                     .url(url)
@@ -75,8 +76,7 @@ public class ManusAI {
 
     public void ask(String userText, Callback cb) {
         if (userText == null || userText.trim().isEmpty()) { cb.onError("פרומפט ריק", null); return; }
-        
-        // תיקון ניתוב לספק הנכון
+
         if (provider == Provider.ANTHROPIC) {
             callClaude(userText, cb);
         } else {
@@ -86,9 +86,9 @@ public class ManusAI {
 
     private void callGemini(String userText, Callback cb) {
         String key = getApiKey();
-        if (key.isEmpty()) { 
-            cb.onError("❌ חסר מפתח API בהגדרות", null); 
-            return; 
+        if (key.isEmpty()) {
+            cb.onError("❌ חסר מפתח API בהגדרות", null);
+            return;
         }
 
         try {
@@ -97,15 +97,15 @@ public class ManusAI {
             JSONObject content = new JSONObject();
             JSONArray parts = new JSONArray();
             JSONObject part = new JSONObject();
-            
+
             part.put("text", userText);
             parts.put(part);
             content.put("parts", parts);
             contents.put(content);
             body.put("contents", contents);
 
-            // עדכון קריטי: מעבר לגרסה v1beta ומודל gemini-2.5-flash
-            String url = "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=" + key;
+            // מעבר ל-gemini-2.5-flash-lite
+            String url = "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-lite:generateContent?key=" + key;
 
             Request req = new Request.Builder()
                     .url(url)
@@ -116,19 +116,18 @@ public class ManusAI {
             http.newCall(req).enqueue(new okhttp3.Callback() {
                 @Override public void onFailure(Call call, IOException e) { cb.onError("שגיאת רשת", e); }
                 @Override public void onResponse(Call call, Response resp) throws IOException {
-                    // טיפול בטוח למניעת NullPointerException
                     ResponseBody responseBody = resp.body();
                     if (responseBody == null) {
                         cb.onError("תגובה ריקה מהשרת", null);
                         return;
                     }
-                    
+
                     String responseData = responseBody.string();
                     if (!resp.isSuccessful()) {
                         cb.onError("שגיאת API: " + resp.code() + " (המודל הושבת או URL שגוי)", null);
                         return;
                     }
-                    
+
                     try {
                         JSONObject j = new JSONObject(responseData);
                         String answer = j.getJSONArray("candidates")
