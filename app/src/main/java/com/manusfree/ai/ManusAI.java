@@ -28,6 +28,50 @@ public class ManusAI {
         return (key != null) ? key.trim() : "";
     }
 
+    public void healthCheck(Callback cb) {
+        String key = getApiKey();
+        if (key.isEmpty()) {
+            cb.onError("❌ חסר מפתח API בהגדרות", null);
+            return;
+        }
+
+        try {
+            JSONObject body = new JSONObject();
+            JSONArray contents = new JSONArray();
+            JSONObject content = new JSONObject();
+            JSONArray parts = new JSONArray();
+            JSONObject part = new JSONObject();
+            
+            part.put("text", "ping");
+            parts.put(part);
+            content.put("parts", parts);
+            contents.put(content);
+            body.put("contents", contents);
+
+            String url = "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=" + key;
+
+            Request req = new Request.Builder()
+                    .url(url)
+                    .addHeader("Content-Type", "application/json")
+                    .post(RequestBody.create(body.toString(), MediaType.parse("application/json")))
+                    .build();
+
+            http.newCall(req).enqueue(new okhttp3.Callback() {
+                @Override public void onFailure(Call call, IOException e) { cb.onError("שגיאת רשת", e); }
+                @Override public void onResponse(Call call, Response resp) throws IOException {
+                    if (resp.isSuccessful()) {
+                        cb.onResult("ok");
+                    } else {
+                        cb.onError("שגיאת API: " + resp.code(), null);
+                    }
+                    resp.close();
+                }
+            });
+        } catch (Exception e) {
+            cb.onError("שגיאה בבדיקת החיבור", e);
+        }
+    }
+
     public void ask(String userText, Callback cb) {
         if (userText == null || userText.trim().isEmpty()) { cb.onError("פרומפט ריק", null); return; }
         
