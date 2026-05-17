@@ -49,7 +49,7 @@ public class ManusAI {
             contents.put(content);
             body.put("contents", contents);
 
-            String url = "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-lite:generateContent?key=" + key;
+            String url = "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=" + key;
 
             Request req = new Request.Builder()
                     .url(url)
@@ -119,7 +119,7 @@ public class ManusAI {
             genConfig.put("temperature", 0.7); // מאפשר גמישות וקבלת החלטות
             body.put("generationConfig", genConfig);
 
-            String url = "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-lite:generateContent?key=" + key;
+            String url = "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=" + key;
 
             Request req = new Request.Builder()
                     .url(url)
