@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#6200EE</color>
+    <color name="colorPrimaryDark">#3700B3</color>
+    <color name="colorAccent">#03DAC5</color>
+    
+    <!-- New color names required by the app -->
+    <color name="primary_color">#6200EE</color>
+    <color name="primary_dark">#3700B3</color>
+    <color name="accent_color">#03DAC5</color>
+    <color name="text_primary">#FFFFFF</color>
+    <color name="text_secondary">#AAAAAA</color>
+    <color name="hint_color">#757575</color>
+    <color name="ai_message_bg">#2C2C2C</color>
+    <color name="user_message_bg">#007AFF</color>
+    <color name="border_color">#404040</color>
+    <color name="input_background">#1E1E1E</color>
+    <color name="time_color_user">#E0E0E0</color>
+    <color name="time_color_ai">#B0B0B0</color>
+    <color name="ai_text_color">#FFFFFF</color>
+    <color name="white">#FFFFFF</color>
+    <color name="ic_launcher_background">#121212</color>
+    <color name="text_color">#FFFFFF</color>
+    <color name="secondary_text_color">#AAAAAA</color>
+    <color name="background_color">#121212</color>
+    <color name="chat_background">#121212</color>
+    <color name="surface_color">#1E1E1E</color>
+    <color name="error_color">#CF6679</color>
+</resources>

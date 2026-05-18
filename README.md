@@ -1,195 +1,156 @@
-<p align="center">
-  <img src="assets/logo.jpg" width="200"/>
-</p>
+# 🤖 Manus-Free AI - Android App
 
-English | [中文](README_zh.md) | [한국어](README_ko.md) | [日本語](README_ja.md)
+[![Build Android APK](https://github.com/infinityempire/manus-ai-android/actions/workflows/build-apk.yml/badge.svg)](https://github.com/infinityempire/manus-ai-android/actions/workflows/build-apk.yml)
 
-[![GitHub stars](https://img.shields.io/github/stars/FoundationAgents/OpenManus?style=social)](https://github.com/FoundationAgents/OpenManus/stargazers)
-&ensp;
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT) &ensp;
-[![Discord Follow](https://dcbadge.vercel.app/api/server/DYn29wFk9z?style=flat)](https://discord.gg/DYn29wFk9z)
-[![Demo](https://img.shields.io/badge/Demo-Hugging%20Face-yellow)](https://huggingface.co/spaces/lyh-917/OpenManusDemo)
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.15186407.svg)](https://doi.org/10.5281/zenodo.15186407)
+**Manus-Free AI** הוא עוזר דיגיטלי חכם עם יכולות AI מתקדמות לאנדרואיד. האפליקציה עובדת במצב offline ו-online ומספקת ממשק צ'אט בעברית עם כלים מתקדמים.
 
-# 👋 OpenManus
+## ✨ תכונות עיקריות
 
-Manus is incredible, but OpenManus can achieve any idea without an *Invite Code* 🛫!
+- 🧠 **מודל AI מובנה** - עובד ללא חיבור לאינטרנט
+- 💬 **ממשק צ'אט בעברית** - שיחה טבעית ואינטואיטיבית
+- 🔍 **חיפוש ברשת** - אינטגרציה עם DuckDuckGo API
+- 📁 **ניהול קבצים** - קריאה וכתיבה של קבצים
+- 🎨 **עיצוב Material Design** - ממשק מודרני ונוח
+- ⚡ **ביצועים מהירים** - תגובה מיידית
+- 🔒 **פרטיות מלאה** - כל הנתונים נשמרים במכשיר
 
-Our team members [@Xinbin Liang](https://github.com/mannaandpoem) and [@Jinyu Xiang](https://github.com/XiangJinyu) (core authors), along with [@Zhaoyang Yu](https://github.com/MoshiQAQ), [@Jiayi Zhang](https://github.com/didiforgithub), and [@Sirui Hong](https://github.com/stellaHSR), we are from [@MetaGPT](https://github.com/geekan/MetaGPT). The prototype is launched within 3 hours and we are keeping building!
+## 📱 דרישות מערכת
 
-It's a simple implementation, so we welcome any suggestions, contributions, and feedback!
+- **Android 5.0** (API 21) ומעלה
+- **זיכרון RAM:** 2GB מומלץ
+- **אחסון:** 100MB פנויים
+- **חיבור אינטרנט:** אופציונלי (לחיפוש ברשת)
 
-Enjoy your own agent with OpenManus!
+## 🚀 התקנה
 
-We're also excited to introduce [OpenManus-RL](https://github.com/OpenManus/OpenManus-RL), an open-source project dedicated to reinforcement learning (RL)- based (such as GRPO) tuning methods for LLM agents, developed collaboratively by researchers from UIUC and OpenManus.
+### הורדה מ-GitHub Releases
 
-## Project Demo
+1. עבור ל[עמוד ה-Releases](https://github.com/infinityempire/manus-ai-android/releases)
+2. הורד את הקובץ `manus-free-release.apk`
+3. הפעל "התקנה ממקורות לא ידועים" בהגדרות Android
+4. התקן את ה-APK
+5. פתח את האפליקציה ותתחיל לשוחח!
 
-<video src="https://private-user-images.githubusercontent.com/61239030/420168772-6dcfd0d2-9142-45d9-b74e-d10aa75073c6.mp4?jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTUiLCJleHAiOjE3NDEzMTgwNTksIm5iZiI6MTc0MTMxNzc1OSwicGF0aCI6Ii82MTIzOTAzMC80MjAxNjg3NzItNmRjZmQwZDItOTE0Mi00NWQ5LWI3NGUtZDEwYWE3NTA3M2M2Lm1wND9YLUFtei1BbGdvcml0aG09QVdTNC1ITUFDLVNIQTI1NiZYLUFtei1DcmVkZW50aWFsPUFLSUFWQ09EWUxTQTUzUFFLNFpBJTJGMjAyNTAzMDclMkZ1cy1lYXN0LTElMkZzMyUyRmF3czRfcmVxdWVzdCZYLUFtei1EYXRlPTIwMjUwMzA3VDAzMjIzOVomWC1BbXotRXhwaXJlcz0zMDAmWC1BbXotU2lnbmF0dXJlPTdiZjFkNjlmYWNjMmEzOTliM2Y3M2VlYjgyNDRlZDJmOWE3NWZhZjE1MzhiZWY4YmQ3NjdkNTYwYTU5ZDA2MzYmWC1BbXotU2lnbmVkSGVhZGVycz1ob3N0In0.UuHQCgWYkh0OQq9qsUWqGsUbhG3i9jcZDAMeHjLt5T4" data-canonical-src="https://private-user-images.githubusercontent.com/61239030/420168772-6dcfd0d2-9142-45d9-b74e-d10aa75073c6.mp4?jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTUiLCJleHAiOjE3NDEzMTgwNTksIm5iZiI6MTc0MTMxNzc1OSwicGF0aCI6Ii82MTIzOTAzMC80MjAxNjg3NzItNmRjZmQwZDItOTE0Mi00NWQ5LWI3NGUtZDEwYWE3NTA3M2M2Lm1wND9YLUFtei1BbGdvcml0aG09QVdTNC1ITUFDLVNIQTI1NiZYLUFtei1DcmVkZW50aWFsPUFLSUFWQ09EWUxTQTUzUFFLNFpBJTJGMjAyNTAzMDclMkZ1cy1lYXN0LTElMkZzMyUyRmF3czRfcmVxdWVzdCZYLUFtei1EYXRlPTIwMjUwMzA3VDAzMjIzOVomWC1BbXotRXhwaXJlcz0zMDAmWC1BbXotU2lnbmF0dXJlPTdiZjFkNjlmYWNjMmEzOTliM2Y3M2VlYjgyNDRlZDJmOWE3NWZhZjE1MzhiZWY4YmQ3NjdkNTYwYTU5ZDA2MzYmWC1BbXotU2lnbmVkSGVhZGVycz1ob3N0In0.UuHQCgWYkh0OQq9qsUWqGsUbhG3i9jcZDAMeHjLt5T4" controls="controls" muted="muted" class="d-block rounded-bottom-2 border-top width-fit" style="max-height:640px; min-height: 200px"></video>
-
-## Installation
-
-We provide two installation methods. Method 2 (using uv) is recommended for faster installation and better dependency management.
-
-### Method 1: Using conda
-
-1. Create a new conda environment:
+### בנייה מקוד המקור
 
 ```bash
-conda create -n open_manus python=3.12
-conda activate open_manus
+# שכפול הפרויקט
+git clone https://github.com/infinityempire/manus-ai-android.git
+cd manus-ai-android
+
+# בנייה
+./gradlew assembleDebug
+
+# ה-APK יימצא ב:
+# app/build/outputs/apk/debug/app-debug.apk
 ```
 
-2. Clone the repository:
+## 🛠️ פיתוח
 
-```bash
-git clone https://github.com/FoundationAgents/OpenManus.git
-cd OpenManus
+### מבנה הפרויקט
+
+```
+app/src/main/
+├── java/com/manusfree/ai/
+│   ├── MainActivity.java      # Activity ראשי
+│   ├── ManusAI.java          # מנוע AI
+│   ├── ChatAdapter.java      # מתאם צ'אט
+│   ├── ChatMessage.java      # מודל הודעה
+│   ├── WebSearchTool.java    # כלי חיפוש
+│   └── FileManager.java      # ניהול קבצים
+├── res/
+│   ├── layout/              # קבצי Layout
+│   ├── values/              # צבעים, מחרוזות, סגנונות
+│   └── drawable/            # אייקונים ורקעים
+└── AndroidManifest.xml      # הגדרות האפליקציה
 ```
 
-3. Install dependencies:
+### טכנולוגיות
 
-```bash
-pip install -r requirements.txt
+- **Java 17** - שפת הפיתוח
+- **Android Gradle Plugin 8.1.0** - כלי בנייה
+- **AndroidX** - ספריות תמיכה מודרניות
+- **Material Design Components** - עיצוב UI
+- **OkHttp** - תקשורת רשת
+- **Gson** - עיבוד JSON
+
+## 🎯 שימוש
+
+### פקודות בסיסיות
+
+האפליקציה תומכת בפקודות מיוחדות:
+
+```
+tool:search_web [שאילתה]     - חיפוש מידע ברשת
+tool:write_file [שם] [תוכן]  - כתיבת קובץ
+tool:read_file [שם קובץ]     - קריאת קובץ
 ```
 
-### Method 2: Using uv (Recommended)
+### דוגמאות שימוש
 
-1. Install uv (A fast Python package installer and resolver):
-
-```bash
-curl -LsSf https://astral.sh/uv/install.sh | sh
+**חיפוש ברשת:**
+```
+tool:search_web מזג האוויר בתל אביב
 ```
 
-2. Clone the repository:
-
-```bash
-git clone https://github.com/FoundationAgents/OpenManus.git
-cd OpenManus
+**כתיבת קובץ:**
+```
+tool:write_file רשימת_קניות.txt חלב, לחם, ביצים
 ```
 
-3. Create a new virtual environment and activate it:
-
-```bash
-uv venv --python 3.12
-source .venv/bin/activate  # On Unix/macOS
-# Or on Windows:
-# .venv\Scripts\activate
+**קריאת קובץ:**
+```
+tool:read_file רשימת_קניות.txt
 ```
 
-4. Install dependencies:
+## 🔧 GitHub Actions
 
-```bash
-uv pip install -r requirements.txt
-```
+הפרויקט כולל workflow אוטומטי שבונה APK עבור כל push:
 
-### Browser Automation Tool (Optional)
-```bash
-playwright install
-```
+- ✅ בנייה אוטומטית של Debug ו-Release APK
+- 📦 העלאה כ-Artifacts
+- 🏷️ יצירת Release אוטומטית
+- 🧪 בדיקות איכות קוד
 
-## Configuration
+## 📋 רשימת תיקונים
 
-OpenManus requires configuration for the LLM APIs it uses. Follow these steps to set up your configuration:
+### גרסה 1.0.0
+- ✅ מבנה פרויקט Android מלא
+- ✅ מנוע AI עם תשובות חכמות
+- ✅ ממשק צ'אט בעברית
+- ✅ כלי חיפוש ברשת
+- ✅ מערכת ניהול קבצים
+- ✅ עיצוב Material Design
+- ✅ GitHub Actions לבנייה אוטומטית
 
-1. Create a `config.toml` file in the `config` directory (you can copy from the example):
+## 🤝 תרומה
 
-```bash
-cp config/config.example.toml config/config.toml
-```
+נשמח לקבל תרומות! אנא:
 
-2. Edit `config/config.toml` to add your API keys and customize settings:
+1. Fork את הפרויקט
+2. צור branch חדש (`git checkout -b feature/amazing-feature`)
+3. Commit את השינויים (`git commit -m 'Add amazing feature'`)
+4. Push ל-branch (`git push origin feature/amazing-feature`)
+5. פתח Pull Request
 
-```toml
-# Global LLM configuration
-[llm]
-model = "gpt-4o"
-base_url = "https://api.openai.com/v1"
-api_key = "sk-..."  # Replace with your actual API key
-max_tokens = 4096
-temperature = 0.0
+## 📄 רישיון
 
-# Optional configuration for specific LLM models
-[llm.vision]
-model = "gpt-4o"
-base_url = "https://api.openai.com/v1"
-api_key = "sk-..."  # Replace with your actual API key
-```
+פרויקט זה מופץ תחת רישיון MIT. ראה `LICENSE` לפרטים נוספים.
 
-## Quick Start
+## 📞 תמיכה
 
-One line for run OpenManus:
+- 🐛 **באגים:** פתח [Issue](https://github.com/infinityempire/manus-ai-android/issues)
+- 💡 **רעיונות:** פתח [Discussion](https://github.com/infinityempire/manus-ai-android/discussions)
+- 📧 **יצירת קשר:** support@manus-free.com
 
-```bash
-python main.py
-```
+## 🙏 תודות
 
-Then input your idea via terminal!
+- [DuckDuckGo](https://duckduckgo.com) - API חיפוש
+- [Material Design](https://material.io) - עיצוב UI
+- [OkHttp](https://square.github.io/okhttp/) - ספריית רשת
+- [Android Jetpack](https://developer.android.com/jetpack) - רכיבי Android
 
-For MCP tool version, you can run:
-```bash
-python run_mcp.py
-```
+---
 
-For unstable multi-agent version, you also can run:
+**Made with ❤️ by the Manus Team**
 
-```bash
-python run_flow.py
-```
-
-### Custom Adding Multiple Agents
-
-Currently, besides the general OpenManus Agent, we have also integrated the DataAnalysis Agent, which is suitable for data analysis and data visualization tasks. You can add this agent to `run_flow` in `config.toml`.
-
-```toml
-# Optional configuration for run-flow
-[runflow]
-use_data_analysis_agent = true     # Disabled by default, change to true to activate
-```
-In addition, you need to install the relevant dependencies to ensure the agent runs properly: [Detailed Installation Guide](app/tool/chart_visualization/README.md##Installation)
-
-## How to contribute
-
-We welcome any friendly suggestions and helpful contributions! Just create issues or submit pull requests.
-
-Or contact @mannaandpoem via 📧email: mannaandpoem@gmail.com
-
-**Note**: Before submitting a pull request, please use the pre-commit tool to check your changes. Run `pre-commit run --all-files` to execute the checks.
-
-## Community Group
-Join our networking group on Feishu and share your experience with other developers!
-
-<div align="center" style="display: flex; gap: 20px;">
-    <img src="assets/community_group.jpg" alt="OpenManus 交流群" width="300" />
-</div>
-
-## Star History
-
-[![Star History Chart](https://api.star-history.com/svg?repos=FoundationAgents/OpenManus&type=Date)](https://star-history.com/#FoundationAgents/OpenManus&Date)
-
-## Sponsors
-Thanks to [PPIO](https://ppinfra.com/user/register?invited_by=OCPKCN&utm_source=github_openmanus&utm_medium=github_readme&utm_campaign=link) for computing source support.
-> PPIO: The most affordable and easily-integrated MaaS and GPU cloud solution.
-
-
-## Acknowledgement
-
-Thanks to [anthropic-computer-use](https://github.com/anthropics/anthropic-quickstarts/tree/main/computer-use-demo), [browser-use](https://github.com/browser-use/browser-use) and [crawl4ai](https://github.com/unclecode/crawl4ai) for providing basic support for this project!
-
-Additionally, we are grateful to [AAAJ](https://github.com/metauto-ai/agent-as-a-judge), [MetaGPT](https://github.com/geekan/MetaGPT), [OpenHands](https://github.com/All-Hands-AI/OpenHands) and [SWE-agent](https://github.com/SWE-agent/SWE-agent).
-
-We also thank stepfun(阶跃星辰) for supporting our Hugging Face demo space.
-
-OpenManus is built by contributors from MetaGPT. Huge thanks to this agent community!
-
-## Cite
-```bibtex
-@misc{openmanus2025,
-  author = {Xinbin Liang and Jinyu Xiang and Zhaoyang Yu and Jiayi Zhang and Sirui Hong and Sheng Fan and Xiao Tang and Bang Liu and Yuyu Luo and Chenglin Wu},
-  title = {OpenManus: An open-source framework for building general AI agents},
-  year = {2025},
-  publisher = {Zenodo},
-  doi = {10.5281/zenodo.15186407},
-  url = {https://doi.org/10.5281/zenodo.15186407},
-}
-```

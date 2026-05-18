@@ -1,0 +1,54 @@
+name: Build & Release Android APK (Container SDK)
+on:
+  push:
+  workflow_dispatch:
+    branches: [ main ]
+permissions:
+  contents: write
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    env:
+      FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+    steps:
+      - uses: actions/checkout@v4
+      - name: set up JDK 17
+        uses: actions/setup-java@v4
+        with:
+          java-version: '17'
+          distribution: 'temurin'
+      - name: Build APK via script
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+        run: |
+          chmod +x create_install_file.sh
+          ./create_install_file.sh debug
+          
+          # בדיקה אם הקובץ קיים
+          if [ ! -f dist/manus-free-installer.apk ]; then
+            echo "❌ Error: APK file not created!"
+            exit 1
+          fi
+          
+          # בדיקת גודל הקובץ ואימות שהוא לא 0 בית
+          FILE_SIZE=$(stat -c%s dist/manus-free-installer.apk 2>/dev/null || stat -f%z dist/manus-free-installer.apk 2>/dev/null)
+          echo "📦 Created APK Size: $FILE_SIZE bytes"
+          if [ "$FILE_SIZE" -le 0 ]; then
+            echo "❌ Error: APK file is empty (0 bytes)!"
+            exit 1
+          fi
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: manus-free-installer-apk
+          path: dist/manus-free-installer.apk
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          files: dist/manus-free-installer.apk
+          tag_name: v1.0-latest
+          name: Manus AI APK (Latest)
+          draft: false
+          prerelease: false
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

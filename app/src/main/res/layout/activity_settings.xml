@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="24dp"
+    android:background="@color/background_color">
+
+    <!-- Header -->
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="⚙️ Manus AI Settings"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:textColor="@color/primary_color"
+        android:gravity="center"
+        android:layout_marginBottom="32dp" />
+
+    <!-- API Key Section -->
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="🤖 Gemini API Key"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:textColor="@color/text_color"
+        android:layout_marginBottom="8dp" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="הזן את מפתח ה-API של Google Gemini כדי לאפשר את פונקציונליות הצ'אט של ה-AI"
+        android:textSize="14sp"
+        android:textColor="@color/secondary_text_color"
+        android:layout_marginBottom="16dp" />
+
+    <EditText
+        android:id="@+id/api_key_input"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:background="@drawable/edit_text_background"
+        android:hint="xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+        android:textSize="14sp"
+        android:textColor="@color/text_color"
+        android:textColorHint="@color/secondary_text_color"
+        android:padding="16dp"
+        android:inputType="text"
+        android:fontFamily="monospace"
+        android:layout_marginBottom="16dp" />
+
+    <!-- Buttons -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginBottom="32dp">
+
+        <Button
+            android:id="@+id/save_button"
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:layout_weight="1"
+            android:text="💾 שמירה"
+            android:textColor="@android:color/white"
+            android:background="@drawable/send_button_background"
+            android:layout_marginEnd="8dp" />
+
+        <Button
+            android:id="@+id/test_button"
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:layout_weight="1"
+            android:text="🧪 בדיקה"
+            android:textColor="@color/primary_color"
+            android:background="@drawable/edit_text_background"
+            android:layout_marginStart="8dp" />
+
+    </LinearLayout>
+
+    <!-- Instructions -->
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="📖 כיצד להשיג מפתח API של Gemini:"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:textColor="@color/text_color"
+        android:layout_marginBottom="8dp" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="1️⃣ עבור ל-aistudio.google.com\n2️⃣ התחבר עם חשבון Google\n3️⃣ לחץ על 'Get API Key'\n4️⃣ בחר 'Create API Key in new project'\n5️⃣ העתק והדבק כאן"
+        android:textSize="14sp"
+        android:textColor="@color/secondary_text_color"
+        android:lineSpacingExtra="4dp" />
+
+</LinearLayout>
