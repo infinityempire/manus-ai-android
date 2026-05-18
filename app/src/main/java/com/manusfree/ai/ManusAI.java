@@ -163,3 +163,4 @@ public class ManusAI {
         cb.onError("Claude עדיין לא מוגדר בקוד", null);
     }
 }
+// Verified sync by Manus Agent at Mon May 18 03:14:35 UTC 2026
