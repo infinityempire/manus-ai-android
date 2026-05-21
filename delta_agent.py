@@ -6,7 +6,6 @@ from pathlib import Path
 import requests
 from gtts import gTTS
 from PIL import Image, ImageDraw, ImageFont
-from bidi.algorithm import get_display
 
 WIDTH, HEIGHT = 1080, 1920
 FPS = 30
@@ -140,13 +139,12 @@ def draw_scene(image_bytes: bytes, title: str, subtitle: str, out_path: Path) ->
 
     for type_, line, h in line_heights:
         font = title_font if type_ == "title" else subtitle_font
-        bidi_line = get_display(line)
-        bbox = draw.textbbox((0, 0), bidi_line, font=font)
+        bbox = draw.textbbox((0, 0), line, font=font)
         w = bbox[2] - bbox[0]
         x = (WIDTH - w) // 2
 
-        draw.text((x + 3, current_y + 3), bidi_line, font=font, fill=(0, 0, 0, 255))
-        draw.text((x, current_y), bidi_line, font=font, fill=(255, 255, 255, 255))
+        draw.text((x + 3, current_y + 3), line, font=font, fill=(0, 0, 0, 255))
+        draw.text((x, current_y), line, font=font, fill=(255, 255, 255, 255))
 
         current_y += h + 10
         if type_ == "title" and line == title_lines[-1] and subtitle_lines:
