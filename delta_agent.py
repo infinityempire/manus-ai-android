@@ -111,43 +111,45 @@ def draw_scene(image_bytes: bytes, title: str, subtitle: str, out_path: Path) ->
         return lines
 
     max_text_width = 900
-    
+
     title_lines = wrap_text(title, title_font, max_text_width)
-    subtitle_lines = wrap_text(subtitle, subtitle_font, max_text_width) if subtitle else []
+    subtitle_lines = (
+        wrap_text(subtitle, subtitle_font, max_text_width) if subtitle else []
+    )
 
     # Calculate total height
     total_h = 0
     line_heights = []
-    
+
     for line in title_lines:
         bbox = draw.textbbox((0, 0), line, font=title_font)
         h = bbox[3] - bbox[1]
         total_h += h + 10
-        line_heights.append(('title', line, h))
-        
+        line_heights.append(("title", line, h))
+
     if subtitle_lines:
-        total_h += 28 # gap
+        total_h += 28  # gap
         for line in subtitle_lines:
             bbox = draw.textbbox((0, 0), line, font=subtitle_font)
             h = bbox[3] - bbox[1]
             total_h += h + 10
-            line_heights.append(('subtitle', line, h))
+            line_heights.append(("subtitle", line, h))
 
     start_y = (HEIGHT - total_h) // 2
     current_y = start_y
 
     for type_, line, h in line_heights:
-        font = title_font if type_ == 'title' else subtitle_font
+        font = title_font if type_ == "title" else subtitle_font
         bidi_line = get_display(line)
         bbox = draw.textbbox((0, 0), bidi_line, font=font)
         w = bbox[2] - bbox[0]
         x = (WIDTH - w) // 2
-        
+
         draw.text((x + 3, current_y + 3), bidi_line, font=font, fill=(0, 0, 0, 255))
         draw.text((x, current_y), bidi_line, font=font, fill=(255, 255, 255, 255))
-        
+
         current_y += h + 10
-        if type_ == 'title' and line == title_lines[-1] and subtitle_lines:
+        if type_ == "title" and line == title_lines[-1] and subtitle_lines:
             current_y += 28
 
     img.convert("RGB").save(out_path, "JPEG", quality=95)
