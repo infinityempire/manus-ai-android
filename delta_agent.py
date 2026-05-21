@@ -190,8 +190,26 @@ def create_marketing_video() -> Path:
             gTTS(text=speech_text, lang="iw").save(str(voice))
 
             clip = tmp / f"scene_{idx}.mp4"
-            duration = scene["duration"]
-            frames = duration * FPS
+            duration = (
+                float(
+                    subprocess.check_output(
+                        [
+                            "ffprobe",
+                            "-v",
+                            "error",
+                            "-show_entries",
+                            "format=duration",
+                            "-of",
+                            "default=noprint_wrappers=1:nokey=1",
+                            str(voice),
+                        ]
+                    )
+                    .decode()
+                    .strip()
+                )
+                + 0.5
+            )
+            frames = int(duration * FPS)
             vf = (
                 "scale=8000:-1,"
                 f"zoompan=z='min(zoom+0.0015,1.5)':x='iw/2-(iw/zoom/2)':y='ih/2-(ih/zoom/2)':d={frames}:s={WIDTH}x{HEIGHT}:fps={FPS}"
