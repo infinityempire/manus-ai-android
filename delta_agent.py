@@ -10,7 +10,34 @@ from PIL import Image, ImageDraw, ImageFont
 WIDTH, HEIGHT = 1080, 1920
 FPS = 30
 OUT_PATH = Path("output/final_marketing_video.mp4")
-FONT_PATH = "/usr/share/fonts/truetype/noto/NotoSansHebrew-Regular.ttf"
+
+
+def _find_hebrew_font() -> str:
+    candidates = [
+        "/usr/share/fonts/truetype/noto/NotoSansHebrew-Regular.ttf",
+        "/usr/share/fonts/truetype/noto/NotoSans-Regular.ttf",
+        "/usr/share/fonts/noto/NotoSansHebrew-Regular.ttf",
+        "/usr/share/fonts/noto/NotoSans-Regular.ttf",
+        "/usr/share/fonts/truetype/liberation/LiberationSans-Regular.ttf",
+        "/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf",
+    ]
+    import glob
+
+    for pattern in [
+        "/usr/share/fonts/**/*Hebrew*Regular*.ttf",
+        "/usr/share/fonts/**/*Noto*Regular*.ttf",
+        "/usr/share/fonts/**/*.ttf",
+    ]:
+        found = glob.glob(pattern, recursive=True)
+        if found:
+            return found[0]
+    for c in candidates:
+        if Path(c).exists():
+            return c
+    return ""
+
+
+FONT_PATH = _find_hebrew_font()
 MUSIC_URLS = [
     "https://cdn.pixabay.com/download/audio/2022/01/18/audio_d0c6ff1bab.mp3",
     "https://cdn.pixabay.com/download/audio/2021/11/25/audio_5baf6b9d0e.mp3",
