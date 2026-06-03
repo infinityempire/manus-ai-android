@@ -14,6 +14,8 @@ OUT_PATH = Path("output/final_marketing_video.mp4")
 
 def _find_hebrew_font() -> str:
     candidates = [
+        "assets/fonts/NotoSansHebrew-Regular.ttf",
+        "assets/fonts/NotoSans-Regular.ttf",
         "/usr/share/fonts/truetype/noto/NotoSansHebrew-Regular.ttf",
         "/usr/share/fonts/truetype/noto/NotoSans-Regular.ttf",
         "/usr/share/fonts/noto/NotoSansHebrew-Regular.ttf",
@@ -23,6 +25,10 @@ def _find_hebrew_font() -> str:
     ]
     import glob
 
+    for candidate in candidates:
+        if Path(candidate).exists():
+            return candidate
+
     for pattern in [
         "/usr/share/fonts/**/*Hebrew*Regular*.ttf",
         "/usr/share/fonts/**/*Noto*Regular*.ttf",
@@ -31,10 +37,20 @@ def _find_hebrew_font() -> str:
         found = glob.glob(pattern, recursive=True)
         if found:
             return found[0]
-    for c in candidates:
-        if Path(c).exists():
-            return c
+
     return ""
+
+
+def load_font(size: int):
+    if FONT_PATH:
+        try:
+            return ImageFont.truetype(FONT_PATH, size)
+        except OSError:
+            pass
+    try:
+        return ImageFont.truetype("DejaVuSans.ttf", size)
+    except OSError:
+        return ImageFont.load_default()
 
 
 FONT_PATH = _find_hebrew_font()
@@ -90,8 +106,8 @@ def draw_scene(image_bytes: bytes, title: str, subtitle: str, out_path: Path) ->
     img = Image.alpha_composite(base, overlay)
 
     draw = ImageDraw.Draw(img)
-    title_font = ImageFont.truetype(FONT_PATH, 72)
-    subtitle_font = ImageFont.truetype(FONT_PATH, 48)
+    title_font = load_font(72)
+    subtitle_font = load_font(48)
 
     def wrap_text(text, font, max_width):
         words = text.split()
@@ -103,7 +119,8 @@ def draw_scene(image_bytes: bytes, title: str, subtitle: str, out_path: Path) ->
             bbox = draw.textbbox((0, 0), test_line, font=font)
             if bbox[2] - bbox[0] > max_width:
                 current_line.pop()
-                lines.append(" ".join(current_line))
+                if current_line:
+                    lines.append(" ".join(current_line))
                 current_line = [word]
         if current_line:
             lines.append(" ".join(current_line))
@@ -112,11 +129,8 @@ def draw_scene(image_bytes: bytes, title: str, subtitle: str, out_path: Path) ->
     max_text_width = 900
 
     title_lines = wrap_text(title, title_font, max_text_width)
-    subtitle_lines = (
-        wrap_text(subtitle, subtitle_font, max_text_width) if subtitle else []
-    )
+    subtitle_lines = wrap_text(subtitle, subtitle_font, max_text_width) if subtitle else []
 
-    # Calculate total height
     total_h = 0
     line_heights = []
 
@@ -127,7 +141,7 @@ def draw_scene(image_bytes: bytes, title: str, subtitle: str, out_path: Path) ->
         line_heights.append(("title", line, h))
 
     if subtitle_lines:
-        total_h += 28  # gap
+        total_h += 28
         for line in subtitle_lines:
             bbox = draw.textbbox((0, 0), line, font=subtitle_font)
             h = bbox[3] - bbox[1]
@@ -181,7 +195,9 @@ def create_marketing_video() -> Path:
         scene_mp4s = []
 
         for idx, scene in enumerate(SCENES, start=1):
-            img_bytes = requests.get(scene["image"], timeout=40).content
+            response = requests.get(scene["image"], timeout=40)
+            response.raise_for_status()
+            img_bytes = response.content
             jpg = tmp / f"scene_{idx}.jpg"
             draw_scene(img_bytes, scene["title"], scene["subtitle"], jpg)
 
