@@ -129,7 +129,9 @@ def draw_scene(image_bytes: bytes, title: str, subtitle: str, out_path: Path) ->
     max_text_width = 900
 
     title_lines = wrap_text(title, title_font, max_text_width)
-    subtitle_lines = wrap_text(subtitle, subtitle_font, max_text_width) if subtitle else []
+    subtitle_lines = (
+        wrap_text(subtitle, subtitle_font, max_text_width) if subtitle else []
+    )
 
     total_h = 0
     line_heights = []
